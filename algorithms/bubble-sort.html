@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Sort Visualization</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="container">
+            <div class="controls">
+                <div class="control-item">
+                    <label for="arraySize">Array Size</label>
+                    <input type="range" id="arraySize" min="10" max="100" value="30">
+                </div>
+                <div class="control-item">
+                    <label for="sortSpeed">Sort Speed</label>
+                    <input type="range" id="sortSpeed" min="1" max="100" value="50">
+                </div>
+                <div class="control-item">
+                    <button id="start">Start Sorting</button>
+                </div>
+            </div>
+            <div id="visualization">
+                <!-- Bars will be dynamically inserted here by JavaScript -->
+            </div>
+        </div>
+        <div class="code-container">
+            <pre id="algorithm-code">
+function bubbleSort() {
+    let swapped;
+    do {
+        swapped = false;
+        for (let i = 0; i < array.length - 1; i++){
+            if (array[i] > array[i + 1]) {
+                swap(array, i, i + 1);
+                swapped = true;
+            }
+        }
+    } while (swapped);
+}
+            </pre>
+        </div>
+    </div>
+    <script src="bubble-sort.js"></script>
+</body>
+</html>
