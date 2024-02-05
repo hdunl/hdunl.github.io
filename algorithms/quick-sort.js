@@ -1,7 +1,5 @@
-// Global variables
 let array = [];
-let sortSpeed = 50; // Default sort speed, updated based on the slider
-
+let sortSpeed = 50;
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('start').addEventListener('click', startQuickSort);
     document.getElementById('sortSpeed').addEventListener('input', updateSortSpeed);
@@ -46,29 +44,29 @@ function adjustBarWidth() {
 
 async function quickSort(arr, start, end) {
     if (start < end) {
-        await highlightLine(1); // Highlight quickSort function call
+        await highlightLine(1);
         let pivotIndex = await partition(arr, start, end);
-        await highlightLine(3); // Highlight the recursive call for the left partition
+        await highlightLine(3);
         await quickSort(arr, start, pivotIndex - 1);
-        await highlightLine(4); // Highlight the recursive call for the right partition
+        await highlightLine(4);
         await quickSort(arr, pivotIndex + 1, end);
     }
 }
 
 async function partition(arr, start, end) {
-    await highlightLine(7); // Highlight partition function start
+    await highlightLine(7);
     let pivotValue = arr[end];
     let pivotIndex = start;
     for (let i = start; i < end; i++) {
-        await highlightLine(9); // Highlight the loop in partition function
+        await highlightLine(9);
         if (arr[i] < pivotValue) {
-            await highlightLine(10); // Highlight the swap if condition in partition
+            await highlightLine(10);
             await visualizeSwap(i, pivotIndex);
             [arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
             pivotIndex++;
         }
     }
-    await highlightLine(13); // Highlight the final swap in partition
+    await highlightLine(13);
     await visualizeSwap(pivotIndex, end);
     [arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]];
     return pivotIndex;
@@ -79,12 +77,9 @@ async function visualizeSwap(index1, index2) {
     let tempHeight = bars[index1].style.height;
     bars[index1].style.height = bars[index2].style.height;
     bars[index2].style.height = tempHeight;
-
     bars[index1].classList.add('swapping');
     bars[index2].classList.add('swapping');
-
     await sleep(calculateDelay());
-
     bars[index1].classList.remove('swapping');
     bars[index2].classList.remove('swapping');
 }
@@ -95,7 +90,7 @@ async function startQuickSort() {
     const startButton = document.getElementById('start');
     startButton.disabled = true;
     await quickSort(array, 0, array.length - 1);
-    visualizeArray(); // Update the visual representation after sorting is done
+    visualizeArray();
     startButton.disabled = false;
 }
 
@@ -116,7 +111,6 @@ function applySyntaxHighlighting(code) {
         'keyword': /\b(do|if|for|let|await|async)\b/g,
         'function': /\b(function|highlightLine|visualizeSwap|initializeArray|adjustBarWidth)\b/g,
         'variable': /\b(array|sortSpeed|container|bar|value|maxValue)\b/g,
-        'comment': /\/\/.*/g,
         'number': /\b\d+\b/g,
         'operator': /[{}();]/g
     };
@@ -128,7 +122,6 @@ function applySyntaxHighlighting(code) {
     return code;
 }
 
-
 async function highlightLine(lineNumber) {
     const codeElement = document.getElementById('algorithm-code');
     let codeLines = codeElement.textContent.split('\n');
@@ -139,13 +132,4 @@ async function highlightLine(lineNumber) {
     }
     codeElement.innerHTML = codeLines.join('\n');
     await sleep(calculateDelay());
-}
-
-function clearHighlights(codeElement) {
-    let codeLines = codeElement.innerHTML.split('\n');
-    codeElement.innerHTML = '';
-    codeLines = codeLines.map(line => {
-        return line.replace(/<mark class="highlight">(.+?)<\/mark>/g, '$1');
-    });
-    codeElement.innerHTML = codeLines.join('\n');
 }
