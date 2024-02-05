@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Sort Visualization</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="container">
+            <div class="controls">
+                <div class="control-item">
+                    <label for="arraySize">Array Size</label>
+                    <input type="range" id="arraySize" min="10" max="100" value="30">
+                </div>
+                <div class="control-item">
+                    <label for="sortSpeed">Sort Speed</label>
+                    <input type="range" id="sortSpeed" min="1" max="100" value="50">
+                </div>
+                <div class="control-item">
+                    <button id="start">Start Sorting</button>
+                </div>
+            </div>
+            <div id="visualization">
+                <!-- Visualization area for sorting -->
+            </div>
+        </div>
+        <div class="code-container">
+            <pre id="algorithm-code">
+function mergeSort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+
+    const middle = Math.floor(array.length / 2);
+    const left = array.slice(0, middle);
+    const right = array.slice(middle);
+
+    return merge(mergeSort(left), mergeSort(right));
+}
+
+function merge(left, right) {
+    let result = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
+
+    while (leftIndex < left.length && rightIndex < right.length) {
+        if (left[leftIndex] < right[rightIndex]) {
+            result.push(left[leftIndex]);
+            leftIndex++;
+        } else {
+            result.push(right[rightIndex]);
+            rightIndex++;
+        }
+    }
+
+    return result.concat(left.slice(leftIndex), right.slice(rightIndex));
+}
+            </pre>
+        </div>
+    </div>
+    <script src="merge-sort.js"></script>
+</body>
+</html>

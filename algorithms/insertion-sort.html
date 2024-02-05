@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertion Sort Visualization</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="container">
+            <div class="controls">
+                <div class="control-item">
+                    <label for="arraySize">Array Size</label>
+                    <input type="range" id="arraySize" min="10" max="100" value="30">
+                </div>
+                <div class="control-item">
+                    <label for="sortSpeed">Sort Speed</label>
+                    <input type="range" id="sortSpeed" min="1" max="100" value="50">
+                </div>
+                <div class="control-item">
+                    <button id="start">Start Sorting</button>
+                </div>
+            </div>
+            <div id="visualization">
+                <!-- Visualization area for sorting -->
+            </div>
+        </div>
+        <div class="code-container">
+            <pre id="algorithm-code">
+function insertionSort(array) {
+    for (let i = 1; i < array.length; i++) {
+        let key = array[i];
+        let j = i - 1;
+        while (j >= 0 && array[j] > key) {
+            array[j + 1] = array[j];
+            j = j - 1;
+        }
+        array[j + 1] = key;
+    }
+}
+            </pre>
+        </div>
+    </div>
+    <script src="insertion-sort.js"></script>
+</body>
+</html>
