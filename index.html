@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm Visualizer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+            --container-bg-color: #fff;
+            --footer-bg-color: #282a36;
+        }
+        [data-theme="dark"] {
+            --primary-color: #9b59b6;
+            --text-color: #f9f9f9;
+            --bg-color: #2c3e50;
+            --container-bg-color: #34495e;
+            --footer-bg-color: #2c3e50;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: #3498db;
+            color: #fff;
+        }
+        header h1 {
+            font-size: 3rem;
+            margin: 0.5rem 0;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+        .card {
+            padding: 1.5rem;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h2 {
+            font-size: 2rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+        .card p {
+            font-size: 1.1rem;
+            color: #555;
+            margin: 0;
+        }
+        .fibonacci-circle {
+            border-radius: 50%;
+            position: absolute;
+            opacity: 0.6;
+            background-color: rgba(255, 255, 255, 0.2);
+            animation: grow ease-in-out infinite;
+        }
+
+        @keyframes grow {
+            0% {
+                transform: scale(0);
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+
+        .algorithm-link {
+            display: block;
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            margin: 1rem 0;
+            padding: 0.5rem 0;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .algorithm-link:hover {
+            background-color: #3498db;
+            color: #fff;
+        }
+        footer {
+            background-color: #282a36;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: auto;
+        }
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        .theme-switch {
+            display: inline-block;
+            height: 34px;
+            position: relative;
+            width: 60px;
+        }
+        .theme-switch input {
+            display:none;
+        }
+        .slider {
+            background-color: #ccc;
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            background-color: #fff;
+            bottom: 4px;
+            content: "";
+            height: 26px;
+            left: 4px;
+            position: absolute;
+            transition: .4s;
+            width: 26px;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .theme-switch-wrapper i {
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+        .theme-switch-wrapper i.sun {
+            color: #f1c40f;
+        }
+        .theme-switch-wrapper i.moon {
+            color: #f39c12;
+        }
+    </style>
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;" data-theme="light">
+    <header>
+        <h1>Algorithm Visualizer</h1>
+        <p>Explore and Understand Sorting Algorithms Through Visualization</p>
+    </header>
+    <div class="container">
+        <div class="card">
+            <h2>Bubble Sort</h2>
+            <p>Visualize the Bubble Sort algorithm step by step.</p>
+            <a href="algorithms/bubble-sort.html" class="algorithm-link">Visualizer</a>
+        </div>
+        <div class="card">
+            <h2>Selection Sort</h2>
+            <p>Visualize the Selection Sort algorithm step by step.</p>
+            <a href="algorithms/selection-sort.html" class="algorithm-link">Visualizer</a>
+        </div>
+        <div class="card">
+            <h2>Insertion Sort</h2>
+            <p>Visualize the Insertion Sort algorithm step by step.</p>
+            <a href="algorithms/insertion-sort.html" class="algorithm-link">Visualizer</a>
+        </div>
+        <div class="card">
+            <h2>Merge Sort</h2>
+            <p>Visualize the Merge Sort algorithm step by step.</p>
+            <a href="algorithms/merge-sort.html" class="algorithm-link">Visualizer</a>
+        </div>
+    </div>
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <footer style="position: fixed; bottom: 0; width: 100%; padding: 1rem; background-color: var(--container-bg-color); display: grid; align-items: center; justify-items: center;">
+        <div style="display: flex; align-items: center;">
+            <img src="vsu.png" alt="VSU Logo" style="width: 60px; height: auto; margin-right: 10px;">
+            <span style="font-size: 1rem; color: var(--text-color);">Hayden Dunlap - Valdosta State University</span>
+        </div>
+    </footer>
+</body>
+</html>
